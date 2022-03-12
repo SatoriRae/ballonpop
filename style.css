@@ -1,13 +1,13 @@
 :root{
   --primary: #f393fd;
-  --primary-lighten: #e9bdee;
+  --primary-lighten: #ebccee;
   --primary-darken: #af2cbc;
   --bg: rgb(224, 217, 217);
-  --shadow: rgba(0,0,0,.3);
+  --shadow: 2px 0 8px rgba(0,0,0,.5);
   --corners: 4px;
   --text-color:  rgb(26, 25, 25);
-  --dark:  rgb(26, 25, 25);
-  --dark-lighten: rgb(41, 39, 39);
+  --dark:  rgb(63, 61, 61);
+  --dark-lighten: rgb(83, 80, 80);
   --light: rgb(253, 253, 253);
 }
 
@@ -22,9 +22,21 @@ header{
   margin: 1em 0;
 }
 
+.logo-container{
+  width: 50%;
+  margin: auto;
+  filter: drop-shadow(var(--shadow));
+}
+
+main{
+  width: 50%;
+  margin :auto;
+}
+
 img{
   max-width: 100%;
-}
+} 
+/* keeps image at origional size */
 
 form{
   margin: 0;
@@ -91,7 +103,6 @@ button:hover {
 
 .pump:active .handle{
 top: -20px;
-
 }
 
 .pump-box{
@@ -149,6 +160,8 @@ top: -20px;
   }
 }
 
+
+
 .container{
   width: 50%;
   margin: auto; 
@@ -165,8 +178,8 @@ top: -20px;
 .card {
   background-color: var(--light);
   padding: 1em;
-  box-shadow: 2px 0 8px var(--shadow);
-  
+  box-shadow: var(--shadow);
+  border-radius: var(--corners);
 }
 
 .shadow {
@@ -234,4 +247,4 @@ justify-content: space-around;
 
 .hidden{
   display: none !important;
-}
+}/*make sure that hidden has highest specificity*/
