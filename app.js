@@ -2,7 +2,7 @@
 // #region GAME LOGIC AND DATA
 
 
-// DATA
+// DATA  (remember that = is "gets")
 let clickCount = 0
 let height = 120
 let width = 100
@@ -17,7 +17,7 @@ let currentPlayer = {}
 let currentColor = "red"
 let possibleColors = ["red", "green", "blue", "purple", "pink"]
 
-
+//hide scoreboard, change player & s-g, SHOW game data
 function startGame() {
   document.getElementById("game-controls").classList.remove("hidden")
   document.getElementById("main-controls").classList.add("hidden")
@@ -50,7 +50,7 @@ function inflate() {
   draw()
 }
 
-
+//when the balloon reaches max size then pop-change color-increase pop count
 function checkBalloonPop() {
   if (height >= maxSize) {
     console.log("pop the balloon")
@@ -58,19 +58,21 @@ function checkBalloonPop() {
     balloonElement.classList.remove(currentColor)
     getRandomColor()
     balloonElement.classList.add(currentColor)
-    //@ts-ignore
+    //@ts-ignore (control .) 
     document.getElementById("pop-sound").play()
     currentPopCount++
     height = 0
     width = 0
   }
 }
+//using Math.floor and Math.random to get new color
 function getRandomColor() {
   let i = Math.floor(Math.random() * possibleColors.length);
   currentColor = possibleColors[i]
   possibleColors.length
 }
 
+//getting elements from HTML and attatching them to JS to draw on screen
 function draw() {
   let balloonElement = document.getElementById("balloon")
   let clickCountElem = document.getElementById("click-count")
@@ -81,6 +83,7 @@ function draw() {
   balloonElement.style.height = height + "px"
   balloonElement.style.width = width + "px"
 
+  //showing the text of these elements 
   clickCountElem.innerText = clickCount.toString()
   popCountElem.innerText = currentPopCount.toString()
   highestPopCountElem.innerText = currentPlayer.topScore.toString()
@@ -88,6 +91,7 @@ function draw() {
 
 }
 
+//hide the game data, show scoreboard, show change player & s-g, reset
 function stopGame() {
   console.log("the game is over")
 
@@ -99,7 +103,7 @@ function stopGame() {
   height = 120
   width = 100
 
-
+//updating scoreboad 
   if (currentPopCount > currentPlayer.topScore) {
     currentPlayer.topScore = currentPopCount
     savePlayers()
@@ -121,7 +125,6 @@ function setPlayer(event)//preventDefault so we don't lose the form
 {
   event.preventDefault()
   let form = event.target
-  console.log(form.playerName)
 
   let playerName = form.playerName.value
 
@@ -143,6 +146,7 @@ function setPlayer(event)//preventDefault so we don't lose the form
   drawScoreboard()
 
 }
+
 function changePlayer() {
   document.getElementById("player-form").classList.remove("hidden")
   document.getElementById("game").classList.add("hidden")
@@ -161,11 +165,12 @@ function loadPlayers() //look for key and bring out player data//
   }//if there is no data, then set player to playersData//
 }
 
-function drawScoreboard() {
+function drawScoreboard() //updating scoreboard//
+ {
   let template = ""
 
   players.sort((p1, p2) => p2.topScore - p1.topScore)
-
+//plugging in a template with player name and top score to scoreboard//
   players.forEach(player => {
     template += `<div class="d-flex space-between">
 <span>
@@ -177,7 +182,6 @@ function drawScoreboard() {
 `
   })
   document.getElementById("players").innerHTML = template
-
 }
 
 drawScoreboard()
