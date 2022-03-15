@@ -4,7 +4,7 @@
 
 // DATA  (remember that = is "gets")
 let clickCount = 0
-let height = 120
+let height = 140
 let width = 100
 let inflationRate = 20
 let maxSize = 300
@@ -100,7 +100,7 @@ function stopGame() {
   document.getElementById("game-controls").classList.add("hidden")
 
   clickCount = 0
-  height = 120
+  height = 140
   width = 100
 
 //updating scoreboad 
@@ -160,7 +160,7 @@ function savePlayers() //grab players from local storage. Use JSON to convert ar
 function loadPlayers() //look for key and bring out player data//
 {
   let playersData = JSON.parse(window.localStorage.getItem("players"))
-  if (!playersData) {
+  if (playersData) {
     players = playersData
   }//if there is no data, then set player to playersData//
 }
